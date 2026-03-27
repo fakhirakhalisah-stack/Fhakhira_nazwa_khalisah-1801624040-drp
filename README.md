@@ -1,8 +1,3 @@
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
-# Fhakhira_nazwa_khalisah-1801624040-drp
+Nama: Fhakhira Nazwa Khalisah
+
+NIM: 1801624040
