@@ -1,3 +1,8 @@
+from checkin import daily_checkin
+from progress import lihat_progress
+from relapse import reset_progress
+from visual import tampil_visual
+
 def display_menu():
     print("\n=== Re:Me ===")
     print("1. Progress Counter")
@@ -7,9 +12,24 @@ def display_menu():
     print("0. Keluar")
 
 def select_menu(menu):
-    if menu == "0":
+
+    if menu == "1":
+        lihat_progress()
+
+    elif menu == "2":
+        daily_checkin()
+
+    elif menu == "3":
+        reset_progress()
+
+    elif menu == "4":
+        tampil_visual()
+
+    elif menu == "0":
         print("Terima kasih telah menggunakan Re:Me!")
         return True
 
-    print("Menu belum tersedia.")
+    else:
+        print("Menu belum tersedia.")
+
     return False
