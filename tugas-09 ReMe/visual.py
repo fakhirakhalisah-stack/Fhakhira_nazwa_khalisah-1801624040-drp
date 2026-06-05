@@ -1,12 +1,24 @@
+import data
+
 def tampil_visual():
     print("\n=== Visual Habit Growth ===")
     print()
-    print("🎮 Habit Quest")
-    print()
-    print("[🌱] Rookie Survivor      - 1 Hari")
-    print("[🌿] Consistent Explorer  - 7 Hari")
-    print("[🌳] Habit Guardian       - 30 Hari")
-    print("[🌲] Master of Control    - 60 Hari")
-    print("[🏆] Re:Me Legend         - 100 Hari")
-    print()
-    print("Unlock achievement baru dengan menjaga streak harian!")
+
+    streak = data.streak
+
+    if streak >= 100:
+        level = "🏆 Re:Me Legend"
+    elif streak >= 60:
+        level = "🌲 Master of Control"
+    elif streak >= 30:
+        level = "🌳 Habit Guardian"
+    elif streak >= 7:
+        level = "🌿 Consistent Explorer"
+    elif streak >= 1:
+        level = "🌱 Rookie Survivor"
+    else:
+        level = "Belum ada achievement"
+
+    print(f"Achievement saat ini: {level}")
+    print(f"Streak saat ini: {streak} hari")
+    print(f"Rekor terbaik: {data.best_streak} hari")
