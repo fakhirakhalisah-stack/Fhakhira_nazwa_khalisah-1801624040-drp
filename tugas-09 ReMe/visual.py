@@ -1,24 +1,30 @@
-import data
+from data import load_data
 
 def tampil_visual():
-    print("\n=== Visual Habit Growth ===")
-    print()
 
-    streak = data.streak
+    data = load_data()
 
-    if streak >= 100:
-        level = "🏆 Re:Me Legend"
-    elif streak >= 60:
-        level = "🌲 Master of Control"
-    elif streak >= 30:
-        level = "🌳 Habit Guardian"
-    elif streak >= 7:
-        level = "🌿 Consistent Explorer"
-    elif streak >= 1:
-        level = "🌱 Rookie Survivor"
-    else:
-        level = "Belum ada achievement"
+    streak = data["streak"]
 
-    print(f"Achievement saat ini: {level}")
-    print(f"Streak saat ini: {streak} hari")
-    print(f"Rekor terbaik: {data.best_streak} hari")
+    print("\n=== Visual Habit Growth ===\n")
+
+    print("🎮 Habit Quest\n")
+
+    achievements = [
+        ("🌱 Rookie Survivor", 1),
+        ("🌿 Consistent Explorer", 7),
+        ("🌳 Habit Guardian", 30),
+        ("🌲 Master of Control", 60),
+        ("🏆 Re:Me Legend", 100)
+    ]
+
+    for nama, target in achievements:
+        if streak >= target:
+            status = "✅"
+        else:
+            status = "🔒"
+
+        print(f"{status} {nama} - {target} Hari")
+
+    print(f"\nStreak saat ini : {streak} hari")
+    print(f"Rekor terbaik   : {data['best_streak']} hari")

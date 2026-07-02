@@ -2,6 +2,7 @@ from checkin import daily_checkin
 from progress import lihat_progress
 from relapse import reset_progress
 from visual import tampil_visual
+from habit import pilih_kebiasaan
 
 def display_menu():
     print("\n=== Re:Me ===")
@@ -9,6 +10,7 @@ def display_menu():
     print("2. Daily Check-in")
     print("3. Relapse")
     print("4. Visual Habit Growth")
+    print("5. Atur Kebiasaan")
     print("0. Keluar")
 
 def select_menu(menu):
@@ -24,6 +26,9 @@ def select_menu(menu):
 
     elif menu == "4":
         tampil_visual()
+
+    elif menu == "5":
+        pilih_kebiasaan()
 
     elif menu == "0":
         print("Terima kasih telah menggunakan Re:Me!")
