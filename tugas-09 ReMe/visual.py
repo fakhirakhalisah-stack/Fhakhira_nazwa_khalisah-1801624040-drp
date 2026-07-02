@@ -1,13 +1,33 @@
-from data import load_data
+import sqlite3
+from database import ambil_habit
+
+def hitung_streak(id_habit):
+
+    connection = sqlite3.connect("reme.db")
+
+    cursor = connection.execute("""
+        SELECT COUNT(*)
+        FROM daily_checkin
+        WHERE status = 'berhasil'
+        AND id_habit = ?
+    """, (id_habit,))
+
+    streak = cursor.fetchone()[0]
+
+    connection.close()
+
+    return streak
+
 
 def tampil_visual():
 
-    data = load_data()
+    data = ambil_habit()
 
-    streak = data["streak"]
+    if not data:
+        print("Belum ada habit.")
+        return
 
     print("\n=== Visual Habit Growth ===\n")
-
     print("🎮 Habit Quest\n")
 
     achievements = [
@@ -18,13 +38,20 @@ def tampil_visual():
         ("🏆 Re:Me Legend", 100)
     ]
 
-    for nama, target in achievements:
-        if streak >= target:
-            status = "✅"
-        else:
-            status = "🔒"
+    for habit in data:
 
-        print(f"{status} {nama} - {target} Hari")
+        id_habit = habit[0]
+        nama_habit = habit[1]
 
-    print(f"\nStreak saat ini : {streak} hari")
-    print(f"Rekor terbaik   : {data['best_streak']} hari")
+        streak = hitung_streak(id_habit)
+
+        print(f"\n📌 {nama_habit}")
+        print(f"Streak saat ini: {streak} hari\n")
+
+        for nama, target in achievements:
+            if streak >= target:
+                status = "✅"
+            else:
+                status = "🔒"
+
+            print(f"{status} {nama} - {target} Hari")

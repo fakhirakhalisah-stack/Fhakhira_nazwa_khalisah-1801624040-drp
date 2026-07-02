@@ -1,17 +1,20 @@
 from tools import display_menu, select_menu
 from habit import pilih_kebiasaan
-from data import load_data
+from database import init_db, ambil_habit
 
 if __name__ == '__main__':
 
-    data = load_data()
+    connection = init_db()
 
-    if data["habit"] == "":
-        print("\n=================================")
-        print("     Selamat Datang di Re:Me")
-        print("=================================")
-        print("Silahkan pilih kebiasaan yang ingin dikurangi.\n")
+    data = ambil_habit()
 
+    print("\n=================================")
+    print("            Re:Me")
+    print("=================================")
+    print("Saatnya mulai perubahan kecil yang konsisten.")
+    print("Pilih kebiasaan yang ingin kamu kurangi.\n")
+
+    if not data:
         pilih_kebiasaan()
 
     while True:

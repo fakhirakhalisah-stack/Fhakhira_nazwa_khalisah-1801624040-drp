@@ -1,22 +1,64 @@
-from data import load_data, save_data
+from database import ambil_habit, tambah_checkin
+from datetime import date
+
+def pilih_habit():
+
+    data = ambil_habit()
+
+    if not data:
+        print("Belum ada habit. Silakan tambah habit dulu.")
+        return None
+
+    print("=== Pilih Habit ===")
+
+    for h in data:
+        print(f"{h[0]}. {h[1]}")
+
+    try:
+        id_habit = int(input("Pilih ID habit: "))
+        return id_habit
+    except ValueError:
+        print("Input tidak valid.")
+        return None
+
 
 def daily_checkin():
 
-    data = load_data()
+    id_habit = pilih_habit()
 
-    jawab = input("Apakah hari ini berhasil menahan diri?: ")
+    if id_habit is None:
+        return
+
+    jawab = input("Apakah hari ini berhasil menahan diri? (iya/tidak): ")
+
+    tanggal = str(date.today())
 
     if jawab.lower() == "iya":
 
-        data["streak"] += 1
+        mood = input("Mood hari ini: ")
+        aktivitas = input("Aktivitas hari ini: ")
+        catatan = input("Catatan (opsional): ")
 
-        if data["streak"] > data["best_streak"]:
-            data["best_streak"] = data["streak"]
+        tambah_checkin(
+            tanggal,
+            "berhasil",
+            mood,
+            aktivitas,
+            catatan,
+            id_habit
+        )
 
-        save_data(data)
-
-        print("Hebat! Kamu berhasil hari ini.")
-        print(f"Streak sekarang: {data['streak']} hari")
+        print("Hebat! Check-in berhasil dicatat.")
 
     else:
-        print("Tetap semangat dan coba lagi besok.")
+
+        tambah_checkin(
+            tanggal,
+            "gagal",
+            "-",
+            "-",
+            "-",
+            id_habit
+        )
+
+        print("Tetap semangat, coba lagi besok.")

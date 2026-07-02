@@ -1,8 +1,9 @@
 from checkin import daily_checkin
 from progress import lihat_progress
-from relapse import reset_progress
+from relapse import relapse
 from visual import tampil_visual
 from habit import pilih_kebiasaan
+from database import hapus_habit
 
 def display_menu():
     print("\n=== Re:Me ===")
@@ -11,7 +12,9 @@ def display_menu():
     print("3. Relapse")
     print("4. Visual Habit Growth")
     print("5. Atur Kebiasaan")
+    print("6. Hapus Habit")
     print("0. Keluar")
+
 
 def select_menu(menu):
 
@@ -22,13 +25,18 @@ def select_menu(menu):
         daily_checkin()
 
     elif menu == "3":
-        reset_progress()
+        relapse()
 
     elif menu == "4":
         tampil_visual()
 
     elif menu == "5":
         pilih_kebiasaan()
+
+    elif menu == "6":
+        id_habit = int(input("Masukkan ID habit yang ingin dihapus: "))
+        hapus_habit(id_habit)
+        print("Habit berhasil dihapus.")
 
     elif menu == "0":
         print("Terima kasih telah menggunakan Re:Me!")

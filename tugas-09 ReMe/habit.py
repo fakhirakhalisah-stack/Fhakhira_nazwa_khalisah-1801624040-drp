@@ -1,8 +1,7 @@
-from data import load_data, save_data
+from database import tambah_habit
+from datetime import date
 
 def pilih_kebiasaan():
-
-    data = load_data()
 
     print("=== Pilih Kebiasaan ===")
     print("1. Alkohol")
@@ -64,7 +63,25 @@ def pilih_kebiasaan():
         print("Pilihan tidak valid.")
         return
 
-    data["habit"] = habit
-    save_data(data)
+    kategori_habit = input("Masukkan kategori habit: ")
 
-    print(f"Kebiasaan berhasil diatur menjadi: {habit}")
+    try:
+        target_pengguna = int(input("Masukkan target (hari): "))
+    except ValueError:
+        print("Target harus berupa angka.")
+        return
+
+    tanggal_mulai = str(date.today())
+    status_habit = "Aktif"
+    id_user = 1
+
+    tambah_habit(
+        habit,
+        kategori_habit,
+        tanggal_mulai,
+        status_habit,
+        target_pengguna,
+        id_user
+    )
+
+    print(f"Kebiasaan berhasil ditambahkan: {habit}")
