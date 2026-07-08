@@ -139,3 +139,30 @@ def hapus_habit(id_habit):
 
     connection.commit()
     connection.close()
+
+
+def hitung_persentase_keberhasilan(id_habit):
+
+    connection = sqlite3.connect("reme.db")
+
+    cursor = connection.execute("""
+        SELECT COUNT(*)
+        FROM daily_checkin
+        WHERE id_habit = ?
+    """, (id_habit,))
+    total_checkin = cursor.fetchone()[0]
+
+    cursor = connection.execute("""
+        SELECT COUNT(*)
+        FROM daily_checkin
+        WHERE id_habit = ?
+        AND status = 'berhasil'
+    """, (id_habit,))
+    jumlah_berhasil = cursor.fetchone()[0]
+
+    connection.close()
+
+    if total_checkin == 0:
+        return 0
+
+    return (jumlah_berhasil / total_checkin) * 100

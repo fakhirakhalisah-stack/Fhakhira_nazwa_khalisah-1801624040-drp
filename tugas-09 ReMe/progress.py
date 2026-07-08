@@ -1,4 +1,4 @@
-from database import ambil_habit
+from database import ambil_habit, hitung_persentase_keberhasilan
 import sqlite3
 
 def hitung_streak(id_habit):
@@ -38,7 +38,9 @@ def lihat_progress():
         status = habit[4]
         target = habit[5]
 
-        streak = hitung_streak(id_habit)
+        streak = hitung_streak(id_habit) 
+
+        persentase = hitung_persentase_keberhasilan(id_habit) 
 
         if streak < 7:
             milestone = 7
@@ -57,5 +59,6 @@ def lihat_progress():
         print(f"Status             : {status}")
         print(f"Target             : {target} hari")
         print(f"Progress (streak)  : {streak} hari")
+        print(f"Persentase Keberhasilan: {persentase:.2f}%")
         print(f"Milestone berikutnya: {milestone}")
         print("-" * 35)
